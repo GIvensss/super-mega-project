@@ -1,0 +1,10 @@
+body{
+    background-color: white;
+}
+div.main{
+    width: 80%;
+    margin: 0 auto;
+}
+a:hover, a:active, a {
+    text-decoration: none;
+}
