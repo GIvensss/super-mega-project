@@ -1,0 +1,22 @@
+.footer{
+    position: relative;
+    height: 400px;
+    background-color: rgb(54, 39, 48);
+    color: #e0e0e0;
+}
+.footer.content{
+    margin: 10px 20px;
+}
+li{
+    font-family: "Source Sans Pro", serif;
+    font-size: 18pt;
+    color: aliceblue;
+    list-style-type: none;
+}
+.footer span{
+    position: absolute;
+    bottom: 0;
+}
+.footer h1{
+    margin-left: 20%;
+}

@@ -1,0 +1,27 @@
+.cart {
+    position: relative;
+    width: 80%;
+    margin: 2% auto;
+}
+.product.selected{
+    width: 80%;
+    height: 250px;
+    margin: 2% auto;
+    border: 1px solid rgba(90, 90, 90, 0.33);
+}
+
+.product.selected img{
+    float: left;
+}
+input.buy{
+
+    width: 10%;
+    height: 40px;
+    background-color: #020202;
+    color: white;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    margin-right:10%;
+    float: right;
+    font-family: "Source Sans Pro", serif;
+}

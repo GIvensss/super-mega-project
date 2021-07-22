@@ -1,0 +1,91 @@
+
+.main-cards{
+    /*margin-left: 30px;*/
+    /*margin-right: 30px;*/
+    /*width: 70%;*/
+}
+.product-card{
+    width: 240px;
+    background-image: url("/templates/images/background.jpg");
+    background-repeat: repeat;
+    color: transparent;
+    padding:10px;
+    margin: 10px;
+
+    transition-duration: 0.5s;
+    transition-property: background-image, box-shadow, color;
+}
+
+.product-card:hover{
+    background-image: none;
+    color: #242424;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.product-card-description{
+    text-align: left;
+    margin-top: 10px;
+}
+
+
+[type="button"].add-to-cart{
+    justify-content: center;
+    color: white;
+    margin-top: 10px;
+    margin-left: 25px;
+    width: 180px;
+    padding: 10px 30px;
+    font-family: "Source Sans Pro", serif;
+    background: linear-gradient(#242424, black, #242424);
+    transition-duration: 0.7s;
+    transition-property: transform, box-shadow;
+
+}
+
+[type="button"]:hover.add-to-cart{
+    transform: scale(1.01);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+div.interesting{
+    height: 410px;
+    margin-top: 5%;
+    background-color: #e0c6d7;
+}
+
+div.interesting img{
+    float: left;
+}
+
+div.interesting h1{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 42pt;
+}
+
+h1 p{
+    margin-left: 5px;
+}
+
+div.cards{
+    border-top: 2px solid #5a5a5a;
+    display: block;
+    margin-top: 10px;
+}
+
+div.product-card.popular{
+    display: inline-block;
+}
+
+div.product-card.new{
+    display: inline-block;
+}
+
+div.cards h3{
+    font-family: "Source Sans Pro", serif;
+    font-size: 18pt;
+    color: #636363;
+}
+
+
+/*
+keyframes for cards
+*/
