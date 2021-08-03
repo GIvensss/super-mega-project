@@ -1,0 +1,18 @@
+{
+    "name": "givensss/super-mega-store",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Yehor Hrytsenko",
+            "email": "egor.grits56@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Framework\\Helpers\\Render\\" : "Framework/Helpers/Render/"
+        }
+    }
+}
