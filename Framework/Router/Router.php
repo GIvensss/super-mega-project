@@ -14,7 +14,7 @@ class Router
     public function __construct()
     {
         $this->request = new Request();
-        $this->routes = include('routes.php');
+        $this->routes = include('App/Config/routes.php');
     }
 
     private function getURI()
