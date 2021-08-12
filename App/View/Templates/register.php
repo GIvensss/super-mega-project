@@ -1,4 +1,3 @@
-<?php require_once("../layouts/header.php") ?>
 <main>
         <div class="page register">
             <section>
@@ -56,4 +55,3 @@
             </section>
         </div>
 </main>
-<?php require_once("../layouts/footer.php") ?>

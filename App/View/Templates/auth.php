@@ -1,5 +1,5 @@
-<?php require_once("../layouts/header.php") ?>
 <main>
+    <?php print_r($params) ?>
     <section>
         <div class="new-user">
             <h2>First time?</h2>
@@ -9,7 +9,7 @@
         <div class="form auth">
             <h2>Authentication</h2>
             <p>For regular users</p>
-            <form class="form-horizontal" action="products.php" role="form" method="POST">
+            <form class="form-horizontal" action="" role="form" method="POST">
                 <div class="form-group">
                     <div class="form-group">
                         <div class="col-sm-10">
@@ -27,13 +27,20 @@
                             </label>
                         </div>
                     </div>
+                    <?php if (isset($params)) : ?>
+                        <?php foreach ($params as $param) : ?>
+                        <div style="color:#570134">
+                            <?php echo $param; ?>
+                        </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default btn-sm">Enter</button>
                         </div>
                     </div>
+
             </form>
         </div>
     </section>
 </main>
-<?php require_once("../layouts/footer.php") ?>
