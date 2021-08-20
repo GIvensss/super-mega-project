@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Service;
 
+use App\Entity\User;
 use App\Service\UserValidation;
 use Framework\Exceptions\ValidationException;
 use Framework\Session\Session;
@@ -11,19 +12,18 @@ class Authentication
     private Session $session;
     private UserValidation $validation;
 
-    private int $id;
-    private string $username;
-    private string $password;
+    private User $user;
 
     public function __construct()
     {
         $this->validation = new UserValidation();
         $this->session = new Session();
+        $this->user = new User();
     }
 
     public static function isAuth(): bool
     {
-        if (Session::contains("login")) {
+        if (Session::contains("username")) {
             return true;
         }
         return false;
@@ -34,22 +34,17 @@ class Authentication
      */
     public function auth(array $params): bool
     {
-        try {
-            $query = "SELECT username, password FROM user WHERE username = :username AND password = :password";
-            $this->username = htmlspecialchars($params['username']);
-            $this->password = htmlspecialchars($params['password']);
-
-
-            if ($this->validation->validateUserData($username, $password)) {
-                if ($login === $this->login && $password === $this->password) {
-                    Session::set('login', $this->login);
-                    return true;
-                }
+        $this->user->setUsername(htmlspecialchars($params['username']));
+        $this->user->setPassword(md5(md5(htmlspecialchars($params['password']))));
+        if ($this->validation->validateUserData($this->user->getUsername(), $this->user->getPassword())) {
+            if ($this->user->checkUser()) {
+                Session::set('username', $this->user->getUsername());
+                return true;
+            } else {
+                throw new ValidationException("No user with this username, password was found");
             }
-            return false;
-        } catch (ValidationException | \InvalidArgumentException $e) {
-            throw $e;
         }
+        return false;
     }
 
     /**
