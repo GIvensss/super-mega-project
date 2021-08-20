@@ -4,7 +4,7 @@
 <!--        <div class="cart">-->
 <!--            <h1>Your cart</h1>-->
             <div class="product selected">
-                <img src="/templates/images/acdc.jpeg" alt="image of selected product">
+                <img src="/src/images/acdc.jpeg" alt="image of selected product">
                 <span class="product name"><strong><?php echo $name ?></strong></span><br>
                 <span class="product price"><?php echo $price ?> UAN</span><br>
                 <div class="product number">

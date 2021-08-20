@@ -4,7 +4,7 @@
         <div class="new-user">
             <h2>First time?</h2>
             <p>then hurry up and join our community. We're counting on you!<br>
-                <a href="register.php">Register now</a></p>
+                <a href="/registration">Register now</a></p>
         </div>
         <div class="form auth">
             <h2>Authentication</h2>
@@ -14,8 +14,8 @@
                     <div class="form-group">
                         <div class="col-sm-10">
                             <label for="login">
-                                Login
-                                <input type="text" class="form-control" placeholder="Enter your login" name="login">
+                                Username
+                                <input type="text" class="form-control" placeholder="Enter your login" name="username">
                             </label>
                         </div>
                     </div>
