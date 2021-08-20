@@ -8,11 +8,12 @@ use Framework\Session\Session;
 
 class Authentication
 {
-    private string $login = "admin";
-    private int $id = 1;
-    private string $password = "admin";
     private Session $session;
     private UserValidation $validation;
+
+    private int $id;
+    private string $username;
+    private string $password;
 
     public function __construct()
     {
@@ -31,17 +32,21 @@ class Authentication
     /**
      * @throws ValidationException
      */
-    public function auth($login, $password): bool
+    public function auth(array $params): bool
     {
         try {
-            if ($this->validation->validateUserData($login, $password)) {
+            $query = "SELECT username, password FROM user WHERE username = :username AND password = :password";
+            $this->username = htmlspecialchars($params['username']);
+            $this->password = htmlspecialchars($params['password']);
+
+
+            if ($this->validation->validateUserData($username, $password)) {
                 if ($login === $this->login && $password === $this->password) {
                     Session::set('login', $this->login);
                     return true;
-                } else {
-                    return false;
                 }
             }
+            return false;
         } catch (ValidationException | \InvalidArgumentException $e) {
             throw $e;
         }

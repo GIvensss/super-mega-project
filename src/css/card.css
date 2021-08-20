@@ -6,7 +6,7 @@
 }
 .product-card{
     width: 240px;
-    background-image: url("/templates/images/background.jpg");
+    background-image: url("/src/images/background.jpg");
     background-repeat: repeat;
     color: transparent;
     padding:10px;

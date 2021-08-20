@@ -1,7 +1,7 @@
 .ceiling{
     position: relative;
     margin: 0 auto;
-    width: 80%;
+    width: 85%;
     height: 180px;
     background-color: #f6e6ff;
 }
@@ -13,10 +13,23 @@
     float:left;
 }
 
+.ceiling img.cabinet-icon{
+    width: 90px;
+    float:right;
+    margin-right: 2%;
+    margin-top: 3%;
+}
+.ceiling img.logout-icon{
+    width: 60px;
+    float:right;
+    margin-right: 5%;
+    margin-top: 4.5%;
+}
+
 .ceiling img.basket-icon{
     width: 80px;
     float:right;
-    margin-right: 5%;
+    margin-right: 2%;
     margin-top: 3%;
 }
 
