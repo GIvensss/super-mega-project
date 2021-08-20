@@ -9,7 +9,6 @@ class ProductsController
 {
     private Renderer $render;
     private Products $products;
-    private array $productsList;
 
     public function __construct()
     {
@@ -17,20 +16,29 @@ class ProductsController
         $this->products = new Products();
     }
 
-    public function showList()
+    public function index()
     {
         try {
-            $this->productsList = $this->products->getProducts();
-            $this->render->render("layout.php", $this->productsList, "products.php");
+            $productsList = $this->products->getProducts();
+            $this->render->render("layout.php", $productsList, "home.php");
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }
-
+    public function showList()
+    {
+        try {
+            $productsList = $this->products->getProducts();
+            $this->render->render("layout.php", $productsList, "products.php");
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
     public function showItem($id)
     {
         try {
-            $productItem = $this->products->getProductById($id[0]);
+            $this->products->setId($id[0]);
+            $productItem = $this->products->getProductById();
             $this->render->render("layout.php", $productItem, "about.php");
         } catch (\Exception $e) {
             echo $e->getMessage();

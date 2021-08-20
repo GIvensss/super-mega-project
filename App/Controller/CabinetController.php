@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Exception;
 use Framework\Helpers\Renderer\Renderer;
-use App\Entity\Authentication;
+use App\Service\Authentication;
 
 class CabinetController
 {
