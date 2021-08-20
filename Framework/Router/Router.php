@@ -45,7 +45,6 @@ class Router
 
                     $this->controllerName = "App\\Controller\\" . ucfirst(array_shift($segments) . 'Controller');
                     $this->actionName = array_shift($segments);
-                    echo $this->controllerName . " " . $this->actionName;
 
                     if ($this->request->isPost()) {
                         $this->request->setBody();
@@ -53,7 +52,6 @@ class Router
                     } else {
                         $params = $segments;
                     }
-                    print_r($params);
 
                     if (!$this->checkClass()) {
                         throw new BadRouteException("Bad route exception 404");

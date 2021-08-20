@@ -1,28 +1,29 @@
 <?php
 
-namespace App\Entity;
+namespace App\Service;
 
+use App\Entity\User;
 use App\Service\UserValidation;
 use Framework\Exceptions\ValidationException;
 use Framework\Session\Session;
 
 class Authentication
 {
-    private string $login = "admin";
-    private int $id = 1;
-    private string $password = "admin";
     private Session $session;
     private UserValidation $validation;
+
+    private User $user;
 
     public function __construct()
     {
         $this->validation = new UserValidation();
         $this->session = new Session();
+        $this->user = new User();
     }
 
     public static function isAuth(): bool
     {
-        if (Session::contains("login")) {
+        if (Session::contains("username")) {
             return true;
         }
         return false;
@@ -31,20 +32,19 @@ class Authentication
     /**
      * @throws ValidationException
      */
-    public function auth($login, $password): bool
+    public function auth(array $params): bool
     {
-        try {
-            if ($this->validation->validateUserData($login, $password)) {
-                if ($login === $this->login && $password === $this->password) {
-                    Session::set('login', $this->login);
-                    return true;
-                } else {
-                    return false;
-                }
+        $this->user->setUsername(htmlspecialchars($params['username']));
+        $this->user->setPassword(md5(md5(htmlspecialchars($params['password']))));
+        if ($this->validation->validateUserData($this->user->getUsername(), $this->user->getPassword())) {
+            if ($this->user->checkUser()) {
+                Session::set('username', $this->user->getUsername());
+                return true;
+            } else {
+                throw new ValidationException("No user with this username, password was found");
             }
-        } catch (ValidationException | \InvalidArgumentException $e) {
-            throw $e;
         }
+        return false;
     }
 
     /**

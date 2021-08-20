@@ -6,13 +6,17 @@ return [
 
     'cabinet' => '/cabinet/index',
 
-    'auth/authenticate' => '/authentication/auth',
+    'registration' => '/registration/index',
+
     'auth/logout' => '/authentication/logout',
     'auth' => '/authentication/index',
 
-    'products/([a-z]+)/([0-9]+)' => '/product/showItem/$1/$2',
+    'products/get' => "/products/getProducts",
     'products/([0-9]+)' => '/products/showItem/$1',
     'products' => '/products/showList',
 
-    '' => '/products/showList'
+    'api/get/([0-9]+)' => '/api/getProductById/$1',
+    'api/get' => '/api/getProducts',
+
+    '' => '/products/index'
 ];

@@ -6,7 +6,8 @@
 }
 .product-card{
     width: 240px;
-    background-image: url("/templates/images/background.jpg");
+    height: 380px;
+    background-image: url("/src/images/background.jpg");
     background-repeat: repeat;
     color: transparent;
     padding:10px;
@@ -84,6 +85,15 @@ div.cards h3{
     font-size: 18pt;
     color: #636363;
 }
+
+.product.image {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+
 
 
 /*
