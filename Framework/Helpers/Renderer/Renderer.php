@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Helpers\Render;
+namespace Framework\Helpers\Renderer;
 
 class Renderer
 {
