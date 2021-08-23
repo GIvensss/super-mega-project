@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Service\Ordering;
 
 class ApiController
 {
     private Products $products;
+    private Ordering $ordering;
     public function __construct()
     {
         $this->products = new Products();
@@ -21,5 +23,16 @@ class ApiController
         header("Content-type: application/json");
         $this->products->setId($id[0]);
         echo json_encode($this->products->getProductById());
+    }
+    public function postOrder($order)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            header("Content-Type: application/json");
+            $this->ordering = new Ordering();
+            $this->ordering->setOrder($order);
+            echo "ok";
+        } else {
+            echo "ТЫ куда лезиешь????????????";
+        }
     }
 }
