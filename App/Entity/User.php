@@ -13,6 +13,11 @@ class User
     public string $email;
     public string $password;
 
+    public function __construct()
+    {
+        $this->db = Database::getInstance();
+    }
+
     /**
      * @return int
      */
@@ -77,12 +82,6 @@ class User
         $this->password = $password;
     }
 
-    public function __construct()
-    {
-        $this->db = new Database();
-        $this->db->connect();
-    }
-
     public function insert()
     {
         $query = "INSERT INTO user(username, email, password) VALUES(:username, :email, :password)";
@@ -129,6 +128,18 @@ class User
             ]
         );
         return $statement->fetch();
+    }
+    public function setIdByUsername()
+    {
+        $query = "SELECT id FROM user WHERE username = :username";
+        $statement = $this->db->query(
+            $query,
+            [
+                'username' => $this->username
+            ]
+        );
+        $result = $statement->fetch();
+        $this->id = $result['id'];
     }
     public function getUserByEmail()
     {
