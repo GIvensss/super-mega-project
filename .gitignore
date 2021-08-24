@@ -1,1 +1,4 @@
 .idea
+/super-mega-store
+.php-cs-fixer.cache
+/vendor/

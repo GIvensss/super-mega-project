@@ -8,11 +8,22 @@
         }
     ],
     "require": {
-        "monolog/monolog": "^2.3"
+        "monolog/monolog": "^2.3",
+        "squizlabs/php_codesniffer": "^3.6",
+        "friendsofphp/php-cs-fixer": "^3.0",
+      "ext-pdo": "*",
+      "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
-            "Framework\\Helpers\\Render\\" : "Framework/Helpers/Render/"
+            "Framework\\Helpers\\Renderer\\" : "Framework/Helpers/Renderer/",
+            "Framework\\Router\\" : "Framework/Router",
+            "Framework\\Exceptions\\" : "Framework/Exceptions",
+            "Framework\\Session\\" : "Framework/Session",
+            "Framework\\Database\\" : "Framework/Database",
+            "App\\Controller\\" : "App/Controller",
+            "App\\Entity\\" : "App/Entity",
+            "App\\Service\\" : "App/Service"
         }
     }
 }
