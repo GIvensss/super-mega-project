@@ -27,5 +27,6 @@
 </main>
 <script src="../../../src/js/request.js"></script>
 <script src="../../../src/js/products.js"></script>
+<script src="../../../src/js/cart.js"></script>
 <script src="../../../src/js/main.js"></script>
 

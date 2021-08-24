@@ -1,9 +1,9 @@
 <body>
 <div class="container">
-    <?php if (isset($_SESSION['login'])) : ?>
+    <?php if (isset($_SESSION['username'])) : ?>
     <div class="row">
         <div class="col-3">GreeTings,
-        <?php echo $_SESSION['login']; ?>
+        <?php echo $_SESSION['username']; ?>
         </div>
     </div>
     <?php endif; ?>
