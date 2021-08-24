@@ -38,7 +38,10 @@ class Authentication
         $this->user->setPassword(md5(md5(htmlspecialchars($params['password']))));
         if ($this->validation->validateUserData($this->user->getUsername(), $this->user->getPassword())) {
             if ($this->user->checkUser()) {
+                $this->user->setIdByUsername();
+                echo $this->user->getUsername();
                 Session::set('username', $this->user->getUsername());
+                Session::set('id', $this->user->getId());
                 return true;
             } else {
                 throw new ValidationException("No user with this username, password was found");
@@ -53,13 +56,21 @@ class Authentication
     public static function getLogin()
     {
         if (self::isAuth()) {
-            return Session::get("login");
+            return Session::get("username");
+        }
+        return false;
+    }
+    public static function getId()
+    {
+        if (self::isAuth()) {
+            return Session::get("id");
         }
         return false;
     }
 
     public function logout(): void
     {
-        $this->session->delete("login");
+        $this->session->delete("username");
+        $this->session->delete("id");
     }
 }

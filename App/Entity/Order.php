@@ -9,12 +9,82 @@ class Order
     private Database $db;
 
     private int $id;
-    private int $userId;
+    private ?int $userId = null;
+    private string $firstName;
+    private string $lastName;
+    private string $address;
+    private string $phone;
+    private array $products;
+
+
 
     public function __construct()
     {
-        $this->db = new Database();
-        $this->db->connect();
+        $this->db = Database::getInstance();
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress(): string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress(string $address): void
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone(string $phone): void
+    {
+        $this->phone = $phone;
     }
 
     /**
@@ -49,16 +119,53 @@ class Order
         $this->userId = $userId;
     }
 
+    /**
+     * @return array
+     */
+    public function getProducts(): array
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param array $products
+     */
+    public function setProducts(array $products): void
+    {
+        $this->products = $products;
+    }
+
     public function insert()
     {
-        $query = "INSERT INTO `order`(user_id) VALUES(:user_id)";
+        $query = "INSERT INTO `order`(user_id, first_name, last_name, address, phone)
+                VALUES(:user_id, :first_name, :last_name, :address, :phone)";
 
-        $this->db->query($query, ['user_id' => $this->userId]);
+        $this->db->query(
+            $query,
+            [
+                'user_id' => $this->userId,
+                'first_name' => $this->firstName,
+                'last_name' => $this->lastName,
+                'address' => $this->address,
+                'phone' => $this->phone
+            ]
+        );
         $this->id = $this->db->lastInsertId();
     }
-    public function insertProduct($productId)
+
+    public function insertProducts()
     {
-        $query = "INSERT INTO order_product(order_id, product_id) VALUES(:order_id, :product_id)";
-        $this->db->query($query, ['order_id' => $this->id, 'product_id' => $productId]);
+        foreach ($this->products as $product) {
+            $query = "INSERT INTO order_product(order_id, product_id, product_amount)
+                VALUES(:order_id, :product_id, :product_amount)";
+            $this->db->query(
+                $query,
+                [
+                    'order_id' => $this->id,
+                    'product_id' => $product['id'],
+                    'product_amount' => $product['amount']
+                ]
+            );
+        }
     }
 }

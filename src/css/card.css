@@ -27,8 +27,7 @@
     margin-top: 10px;
 }
 
-
-[type="button"].add-to-cart{
+button.add-to-cart{
     justify-content: center;
     color: white;
     margin-top: 10px;
@@ -41,10 +40,13 @@
     transition-property: transform, box-shadow;
 
 }
-
-[type="button"]:hover.add-to-cart{
+button.add-to-cart:hover.add-to-cart{
     transform: scale(1.01);
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+button.add-to-cart:disabled{
+    pointer-events: none;
+    background: linear-gradient(#676767, black, #676767);
 }
 
 div.interesting{
