@@ -12,6 +12,7 @@
 
 .product.selected img{
     float: left;
+    width: 90%;
 }
 input.buy{
 

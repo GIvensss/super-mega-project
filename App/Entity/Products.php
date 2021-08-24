@@ -114,8 +114,7 @@ class Products
 
     public function __construct()
     {
-        $this->db = new Database();
-        $this->db->connect();
+        $this->db = Database::getInstance();
     }
     public function insert()
     {
