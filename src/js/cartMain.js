@@ -2,7 +2,6 @@ const cartProducts = getCart() || {};
 
 if(totalAmount(cartProducts)) {
     for(let key in cartProducts) {
-        console.log(cartProducts[key].id);
         fetchProducts('/api/get/' + cartProducts[key].id).then(res => showProductInCart(res));
     }
     let node = document.createElement("div");

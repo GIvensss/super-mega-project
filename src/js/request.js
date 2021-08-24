@@ -15,8 +15,7 @@ const fetchOrder = async (url, data) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
-        redirect: 'error'
+        body: JSON.stringify(data)
     });
     return await response.json();
 }
