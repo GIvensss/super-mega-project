@@ -5,14 +5,14 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../../../templates/css/card.css">
-    <link rel="stylesheet" href="../../../templates/css/menu.css">
-    <link rel="stylesheet" href="../../../templates/css/main.css">
-    <link rel="stylesheet" href="../../../templates/css/footer.css">
-    <link rel="stylesheet" href="../../../templates/css/header.css">
-    <link rel="stylesheet" href="../../../templates/css/auth.css">
-    <link rel="stylesheet" href="../../../templates/css/about.css">
-    <link rel="stylesheet" href="../../../templates/css/cart.css">
+    <link rel="stylesheet" href="../../../src/css/card.css">
+    <link rel="stylesheet" href="../../../src/css/menu.css">
+    <link rel="stylesheet" href="../../../src/css/main.css">
+    <link rel="stylesheet" href="../../../src/css/footer.css">
+    <link rel="stylesheet" href="../../../src/css/header.css">
+    <link rel="stylesheet" href="../../../src/css/auth.css">
+    <link rel="stylesheet" href="../../../src/css/about.css">
+    <link rel="stylesheet" href="../../../src/css/cart.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
@@ -25,37 +25,53 @@
 <body>
 <header>
     <div class="ceiling">
+        <div class="row">
+            <div class="col-md-4">
         <a href="/">
-            <img class="main-icon" src="../../../templates/images/rock-symbol.svg" alt="rock-ico">
+            <img class="main-icon" src="../../../src/images/rock-symbol.svg" alt="rock-ico">
         </a>
-        <?php if (isset($_SESSION['login'])) : ?>
-            <a href="/auth/logout">
-                <img class="logout-icon" src="../../../templates/images/log-out.png" alt="logout">
-            </a>
-            <a href="/cabinet/index">
-                <img class="cabinet-icon" src="../../../templates/images/punk.png" alt="cabinet">
-            </a>
-        <?php else : ?>
-            <a href="/auth">
-                <img class="cabinet-icon" src="../../../templates/images/punk.png" alt="cabinet">
-            </a>
-        <?php endif; ?>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <a href="/cart">
+                    <img class="basket-icon" src="../../../src/images/basket.svg" alt="basket">
+                    <span class="badge bg-secondary mx-2 cartProductAmount">
+                        0
+                    </span>
+                </a>
+                <?php if (isset($_SESSION['username'])) : ?>
+                    <a href="/cabinet/index">
+                        <img class="cabinet-icon" src="../../../src/images/punk.png" alt="cabinet">
+                    </a>
+                    <a href="/auth/logout">
+                        <img class="logout-icon" src="../../../src/images/log-out.png" alt="logout">
+                    </a>
+                <?php else : ?>
+                    <a href="/auth">
+                        <img class="cabinet-icon" src="../../../src/images/punk.png" alt="cabinet">
+                    </a>
+                <?php endif; ?>
 
-        <img class="basket-icon" src="../../../templates/images/basket.svg" alt="basket">
-        <form>
-            <p><input type="search" class="search" name="q" placeholder="Search">
-                <button type="submit" class="search" value="Search">Search</button></p>
-        </form>
-    </div>
-    <nav>
-        <div class="menu">
-            <ol class="menu">
-                <li>Categories</li>
-                <li>Bands</li>
-                <li>About</li>
-                <li>Feedback</li>
-            </ol>
+            </div>
         </div>
-
-    </nav>
+        <div class="row">
+                <div class="col-md-4 offset-md-2">
+                    <input type="search" class="search" name="q" placeholder="Search">
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="search" value="Search">Search</button>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <nav>
+            <div class="menu">
+                <ol class="menu">
+                    <li>Categories</li>
+                    <li>Bands</li>
+                    <li>About</li>
+                    <li>Feedback</li>
+                </ol>
+            </div>
+        </nav>
+    </div>
 </header>
