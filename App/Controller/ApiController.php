@@ -30,7 +30,7 @@ class ApiController
             header("Content-Type: application/json");
             $this->ordering = new Ordering();
             $this->ordering->setOrder($order);
-            echo "ok";
+            echo json_encode("ok");
         } else {
             echo "ТЫ куда лезиешь????????????";
         }
