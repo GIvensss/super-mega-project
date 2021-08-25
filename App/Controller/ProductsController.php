@@ -25,10 +25,10 @@ class ProductsController
             echo $e->getMessage();
         }
     }
-    public function showList()
+    public function page($page)
     {
         try {
-            $productsList = $this->products->getProducts();
+            $productsList = $this->products->getPage($page[0], 3);
             $this->render->render("layout.php", $productsList, "products.php");
         } catch (\Exception $e) {
             echo $e->getMessage();
