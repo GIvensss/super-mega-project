@@ -29,7 +29,7 @@ class CabinetController
         }
     }
 
-    public function getOrders()
+    public function showOrders()
     {
         if (Authentication::isAuth()) {
             $this->order->setUserId(Authentication::getId());
