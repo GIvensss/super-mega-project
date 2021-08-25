@@ -135,10 +135,11 @@ class Products
     public function getProducts(): array
     {
         $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src,
-                band.name AS `band` FROM product LEFT JOIN band ON product.band_id = band.id;';
+                band.name AS `band` FROM product LEFT JOIN band ON product.band_id = band.id';
         $statement = $this->db->query($query);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function getProductById()
     {
         $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src,
@@ -149,5 +150,30 @@ class Products
 
         $statement = $this->db->query($query, ['id' => $this->id]);
         return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getPage(int $page, int $itemPerPage)
+    {
+        $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src
+                    FROM product 
+                    LIMIT %d OFFSET %d';
+
+        $statement = $this->db->query(
+            sprintf(
+                $query,
+                $itemPerPage,
+                (($page - 1) * $itemPerPage)
+            )
+        );
+        return $statement->fetchAll();
+    }
+
+    public function getTotalPages($itemsPerPage): int
+    {
+        $query = 'SELECT COUNT(*) FROM product';
+
+        $statement = $this->db->query($query, []);
+        $result = $statement->fetch();
+        return ceil($result[0] / $itemsPerPage);
     }
 }
