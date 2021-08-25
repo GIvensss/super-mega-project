@@ -16,7 +16,7 @@
                             <a href="" class="nav-link">Account</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">My Orders</a>
+                            <a href="/cabinet/orders" class="nav-link">My Orders</a>
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">My Cart</a>
@@ -26,7 +26,19 @@
             </nav>
             </div>
         </div>
-    </div>
+                    <?php foreach ($params as $param) : ?>
+                        <div class="row">
+                            <div class="col-md-3">ID order:
+                                <strong><?php echo $param['order_id'] ?></strong>
+                            </div>
+                            <div class="col-md-3">Products Amount :
+                                <strong><?php echo $param['total_products'] ?></strong>
+                            </div>
+                            <div class="col-md-3">Total Price:
+                                <strong><?php echo $param['total_price']?> UAN</strong>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
 </div>
 </body>
 </html>

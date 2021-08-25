@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Framework\Database\Database;
+use PDO;
 
 class Order
 {
@@ -167,5 +168,20 @@ class Order
                 ]
             );
         }
+    }
+
+    public function getOrdersByUserId()
+    {
+        $query = "SELECT  
+                    order_product.order_id as 'order_id',
+                    SUM(order_product.product_amount) as `total_products`,
+                    SUM(order_product.product_amount * product.price) as `total_price`
+                    FROM `order_product` 
+                    INNER JOIN product ON product.id = order_product.product_id
+                    INNER JOIN `order` ON order_product.order_id = `order`.id
+                    WHERE `order`.user_id = :user_id
+                    GROUP BY `order_product`.order_id";
+        $statement = $this->db->query($query, ['user_id' => $this->userId]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
