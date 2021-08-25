@@ -80,7 +80,7 @@ const decrementProduct = (item, id) => {
 const removeProduct = (item, id) => {
     let cart = getCart();
     let container = item.parentElement.parentElement.parentElement;
-    delete cart[id];
+    delete cart["id_" + id];
     setItemToCart(cart);
     container.remove();
     if(Object.keys(cart).length === 0) {

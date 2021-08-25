@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../src/css/card.css">
     <link rel="stylesheet" href="../../../src/css/menu.css">
-    <link rel="stylesheet" href="../../../src/css/main.css">
     <link rel="stylesheet" href="../../../src/css/footer.css">
     <link rel="stylesheet" href="../../../src/css/header.css">
     <link rel="stylesheet" href="../../../src/css/auth.css">
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="../../../src/css/cart.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../src/css/main.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

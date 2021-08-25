@@ -2,7 +2,7 @@ const cartProducts = getCart() || {};
 
 if(totalAmount(cartProducts)) {
     for(let key in cartProducts) {
-        fetchProducts('/api/get/' + cartProducts[key].id).then(res => showProductInCart(res));
+        fetchGet('/api/get/' + cartProducts[key].id).then(res => showProductInCart(res));
     }
     let node = document.createElement("div");
     node.setAttribute('class', 'row');
