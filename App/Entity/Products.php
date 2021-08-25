@@ -13,6 +13,12 @@ class Products
     private float $price;
     private int $category_id;
     private int $band_id;
+    private string $description;
+
+    public function __construct()
+    {
+        $this->db = Database::getInstance();
+    }
 
     /**
      * @return int
@@ -109,13 +115,7 @@ class Products
     {
         $this->description = $description;
     }
-    private string $description;
 
-
-    public function __construct()
-    {
-        $this->db = Database::getInstance();
-    }
     public function insert()
     {
         $query = 'INSERT INTO product(name, price, band_id, category_id, description) 
@@ -175,5 +175,20 @@ class Products
         $statement = $this->db->query($query, []);
         $result = $statement->fetch();
         return ceil($result[0] / $itemsPerPage);
+    }
+
+    public function getProductByMatch($match): array
+    {
+        $query = "SELECT product.id, product.name, product.price, product.description, product.image_src,
+                    band.name AS `band`, category.name AS `category` FROM product 
+                    LEFT JOIN band ON product.band_id = band.id
+                    LEFT JOIN category ON product.category_id = category.id
+                    WHERE 
+                        (product.name LIKE CONCAT('%', :match, '%')) 
+                        OR (product.description LIKE CONCAT('%', :match, '%'))
+                        OR(band.name LIKE CONCAT('%', :match, '%'))
+                        OR(category.name LIKE CONCAT('%', :match, '%'))";
+        $statement = $this->db->query($query, ['match' => $match]);
+        return $statement->fetchAll();
     }
 }
