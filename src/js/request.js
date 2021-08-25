@@ -1,5 +1,4 @@
-async function fetchProducts(url)
-{
+const fetchGet = async (url) => {
     const response = await fetch(url, {
         headers: {
             "Content-Type": "application/json",
@@ -8,7 +7,8 @@ async function fetchProducts(url)
     });
     return await response.json();
 }
-const fetchOrder = async (url, data) => {
+
+const fetchPost = async (url, data) => {
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',

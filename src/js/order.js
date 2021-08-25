@@ -69,7 +69,7 @@ orderForm.addEventListener('submit', function (e) {
         showValidationError('phone', invPhone);
     }
     if(isEmptyErrors(invFirstName, invLastName, invAddress, invPhone)) {
-        fetchOrder('/api/post-order', orderData)
+        fetchPost('/api/post-order', orderData)
             .then((response) => {
                 console.log("Response: " + response);
                 setItemToCart({});
