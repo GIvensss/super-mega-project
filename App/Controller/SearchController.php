@@ -18,6 +18,11 @@ class SearchController
 
     public function index($param)
     {
-        echo json_encode($this->searching->search($param));
+        try {
+            $productsList = $this->searching->search($param);
+            $this->render->render('layout.php', $productsList, 'products.php');
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
