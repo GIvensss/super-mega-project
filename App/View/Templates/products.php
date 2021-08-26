@@ -3,28 +3,30 @@
     <div class="main">
         <section>
             <div class="main-cards">
-                <div class="col-lg-02 col-md-3">
-                    <div class="top-cover center-block">
                             <!-- PLACE FOR PRODUCTS -->
-                        <img class="top-name center-block text-center"
-                                 src="../../../src/images/waiting.gif" alt="loading...">
-                    </div>
+                        <?php  foreach ($params as $param) : ?>
+                        <div class="product-card popular">-->
+                            <a href="/products/<?= $param['id'] ?>">
+                                <div class="product image">
+                                    <img class="product image" src="/<?= $param['image_src'] ?>" alt="rock-shirt">
+                                </div>
+                            </a>
+                            <div class="product-card-name">
+                                <?= $param['name'] ?>
+                            </div>
+                            <div class="product-card-description">
+                                <?= $param['description'] ?>
+                            </div>
+                            <div class="button add-to-cart">
+                                <button class="add-to-cart" value="UAN"><?= $param['price'] ?> UAN</button>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
                 </div>
             </div>
         </section>
     </div>
-    <div class="row">
-        <ul class="pagination justify-content-center">
-        </ul>
-    </div>
 </main>
-<script src="../../../src/js/url.js"></script>
-<script src="../../../src/js/request.js"></script>
-<script src="../../../src/js/pages.js"></script>
-<script src="../../../src/js/products.js"></script>
-<script src="../../../src/js/cart.js"></script>
-<script src="../../../src/js/productsMain.js"></script>
-
 <!--                <div class="cards popular">-->
 <!--                    <h3>Popular: be always in trend</h3><br>-->
 <!--                    <a href="/products/">-->
