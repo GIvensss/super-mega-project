@@ -2,17 +2,18 @@
 
 namespace App\Entity;
 
+use Framework\Core\ActiveRecord;
 use Framework\Database\Database;
 use PDO;
 
-class Products
+class Products extends ActiveRecord
 {
     protected Database $db;
     private int $id;
     private string $name;
     private float $price;
-    private int $category_id;
-    private int $band_id;
+    private int $categoryId;
+    private int $bandId;
 
     /**
      * @return int
@@ -67,15 +68,15 @@ class Products
      */
     public function getCategoryId(): int
     {
-        return $this->category_id;
+        return $this->categoryId;
     }
 
     /**
      * @param int $category_id
      */
-    public function setCategoryId(int $category_id): void
+    public function setCategoryId(int $categoryId): void
     {
-        $this->category_id = $category_id;
+        $this->categoryId = $categoryId;
     }
 
     /**
@@ -83,7 +84,7 @@ class Products
      */
     public function getBandId(): int
     {
-        return $this->band_id;
+        return $this->bandId;
     }
 
     /**
@@ -91,7 +92,7 @@ class Products
      */
     public function setBandId(int $band_id): void
     {
-        $this->band_id = $band_id;
+        $this->bandId = $band_id;
     }
 
     /**
@@ -116,7 +117,7 @@ class Products
     {
         $this->db = Database::getInstance();
     }
-    public function insert()
+    public function insert(): void
     {
         $query = 'INSERT INTO product(name, price, band_id, category_id, description) 
                 VALUES (:name, :price, :band_id, :category_id, :description)';
@@ -140,7 +141,7 @@ class Products
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProductById()
+    public function getProductById(): array
     {
         $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src,
                     band.name AS `band`, category.name AS `category` FROM product 
@@ -152,7 +153,26 @@ class Products
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getPage(int $page, int $itemPerPage)
+    public function getProductsByCategory(): array
+    {
+        $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src
+                    FROM product 
+                    WHERE product.category_id = :category_id';
+
+        $statement = $this->db->query($query, ['category_id' => $this->categoryId]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getProductsByBand(): array
+    {
+        $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src
+                    FROM product 
+                    WHERE product.band_id = :band_id';
+
+        $statement = $this->db->query($query, ['band_id' => $this->bandId]);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getPage(int $page, int $itemPerPage): array
     {
         $query = 'SELECT product.id, product.name, product.price, product.description, product.image_src
                     FROM product 
@@ -175,5 +195,12 @@ class Products
         $statement = $this->db->query($query, []);
         $result = $statement->fetch();
         return ceil($result[0] / $itemsPerPage);
+    }
+
+    public function getAll(): array
+    {
+        $query = "SELECT * FROM product";
+        $statement = $this->db->query($query);
+        return $statement->fetchAll();
     }
 }
