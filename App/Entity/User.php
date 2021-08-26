@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use Framework\Core\ActiveRecord;
 use Framework\Database\Database;
 
-class User
+class User extends ActiveRecord
 {
-    private Database $db;
+    protected Database $db;
 
     public int $id;
     public string $username;
@@ -82,7 +83,7 @@ class User
         $this->password = $password;
     }
 
-    public function insert()
+    public function insert(): void
     {
         $query = "INSERT INTO user(username, email, password) VALUES(:username, :email, :password)";
         $statement = $this->db->query(
@@ -107,7 +108,7 @@ class User
             ]
         );
     }
-    public function getUserById()
+    public function getUserById(): array
     {
         $query = "SELECT username, email, password FROM user WHERE id = :id";
         $statement = $this->db->query(
@@ -118,7 +119,7 @@ class User
         );
         return $statement->fetchAll();
     }
-    public function getUserByUsername()
+    public function getUserByUsername(): array
     {
         $query = "SELECT username, email, password FROM user WHERE username = :username";
         $statement = $this->db->query(
@@ -129,7 +130,7 @@ class User
         );
         return $statement->fetch();
     }
-    public function setIdByUsername()
+    public function setIdByUsername(): void
     {
         $query = "SELECT id FROM user WHERE username = :username";
         $statement = $this->db->query(
@@ -141,13 +142,13 @@ class User
         $result = $statement->fetch();
         $this->id = $result['id'];
     }
-    public function getUserByEmail()
+    public function getUserByEmail(): array
     {
         $query = "SELECT username, email, password FROM user WHERE email = :email";
         $statement = $this->db->query($query, ['email' => $this->email]);
         return $statement->fetch();
     }
-    public function checkUser()
+    public function checkUser(): array
     {
         $query = "SELECT username, password FROM user WHERE username = :username AND password = :password";
         $statement = $this->db->query(
@@ -155,5 +156,11 @@ class User
             ['username' => $this->username, 'password' => $this->password]
         );
         return $statement->fetch();
+    }
+    public function getAll(): array
+    {
+        $query = "SELECT * FROM user";
+        $statement = $this->db->query($query);
+        return $statement->fetchAll();
     }
 }

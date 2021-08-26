@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
+use Framework\Core\ActiveRecord;
 use Framework\Database\Database;
 use PDO;
 
-class Order
+class Order extends ActiveRecord
 {
-    private Database $db;
+    protected Database $db;
 
     private int $id;
     private ?int $userId = null;
@@ -136,7 +137,7 @@ class Order
         $this->products = $products;
     }
 
-    public function insert()
+    public function insert(): void
     {
         $query = "INSERT INTO `order`(user_id, first_name, last_name, address, phone)
                 VALUES(:user_id, :first_name, :last_name, :address, :phone)";
@@ -170,7 +171,7 @@ class Order
         }
     }
 
-    public function getOrdersByUserId()
+    public function getOrdersByUserId(): array
     {
         $query = "SELECT  
                     order_product.order_id as 'order_id',
@@ -183,5 +184,12 @@ class Order
                     GROUP BY `order_product`.order_id";
         $statement = $this->db->query($query, ['user_id' => $this->userId]);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAll(): array
+    {
+        $query = "SELECT * FROM `order`";
+        $statement = $this->db->query($query);
+        return $statement->fetchAll();
     }
 }

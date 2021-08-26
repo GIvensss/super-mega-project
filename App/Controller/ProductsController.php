@@ -37,9 +37,32 @@ class ProductsController
     public function showItem($id)
     {
         try {
-            $this->products->setId($id[0]);
+            $productId = $id[0];
+            $this->products->setId($productId);
             $productItem = $this->products->getProductById();
-            $this->render->render("layout.php", $productItem, "about.php");
+            $this->render->render("layout.php", $productId, "about.php");
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function category($id)
+    {
+        try {
+            $categoryId = $id[0];
+            $this->products->setCategoryId($categoryId);
+            $productsList = $this->products->getProductsByCategory();
+            $this->render->render("layout.php", $productsList, "products.php");
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function band($id)
+    {
+        try {
+            $bandId = $id[0];
+            $this->products->setBandId($bandId);
+            $productsList = $this->products->getProductsByBand();
+            $this->render->render("layout.php", $productsList, "products.php");
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
