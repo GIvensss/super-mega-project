@@ -14,6 +14,8 @@ return [
     'auth/logout' => '/authentication/logout',
     'auth' => '/authentication/index',
 
+    'search' => '/search/index',
+
     'products/page/([0-9]+)' => '/products/page/$1',
     'products/([0-9]+)' => '/products/showItem/$1',
 
