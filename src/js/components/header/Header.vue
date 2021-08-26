@@ -15,13 +15,13 @@
             </span>
           </a>
 
-          <a href="/cabinet/index">
+          <a v-if="isAuth" href="/cabinet/index">
             <img class="cabinet-icon" src="/src/images/punk.png" alt="cabinet">
           </a>
-          <a href="/auth/logout">
+          <a v-if="isAuth" href="/auth/logout">
             <img class="logout-icon" src="/src/images/log-out.png" alt="logout">
           </a>
-          <a href="/auth">
+          <a v-if="!isAuth" href="/auth">
             <img class="cabinet-icon" src="/src/images/punk.png" alt="cabinet">
           </a>
         </div>
@@ -35,24 +35,25 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <nav>
-        <div class="menu">
-          <ol class="menu">
-            <li>Categories</li>
-            <li>Bands</li>
-            <li>About</li>
-            <li>Feedback</li>
-          </ol>
-        </div>
-      </nav>
-    </div>
+    <my-menu></my-menu>
+
   </header>
 </template>
 
 <script>
+import MyMenu from "./MyMenu";
 export default {
   name: "Header",
+  props: {
+    isAuth: {
+      type: String
+    }
+  },
+  mounted() {
+  },
+  components: {
+    MyMenu
+  },
   computed: {
     totalAmount(){
       return this.$root.totalAmount;
