@@ -14,15 +14,12 @@ return [
     'auth/logout' => '/authentication/logout',
     'auth' => '/authentication/index',
 
+    'search' => '/search/index',
 
     'products/page/([0-9]+)' => '/products/page/$1',
     'products/category/([0-9]+)' => '/products/category/$1',
     'products/band/([0-9]+)' => '/products/band/$1',
     'products/([0-9]+)' => '/products/showItem/$1',
-    'products' => '/products/index',
-
-
-    'search' => '/search/index',
 
     'api/get/page/([0-9]+)' => '/api/getPage/$1',
     'api/get/total-page' => '/api/getTotalPages/',
